@@ -2,8 +2,8 @@
 #include "FFmpegException.h"
 #ifdef __linux__
 #include <limits>
-#include <iostream>
 #endif
+#include <iostream>
 
 /*
 // Source : https://www.hardening-consulting.com/posts/20170625-utiliser-vaapi-avec-ffmpeg.html
