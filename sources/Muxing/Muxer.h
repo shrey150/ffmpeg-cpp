@@ -2,10 +2,7 @@
 
 #include "ffmpeg.h"
 #include <vector>
-
-#ifdef __linux__
 #include <string>
-#endif
 
 namespace ffmpegcpp {
 
