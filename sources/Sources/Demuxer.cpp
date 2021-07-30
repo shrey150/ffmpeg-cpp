@@ -132,8 +132,11 @@ namespace ffmpegcpp
         av_dict_set_int(&m_audio_opts, "frames", 32, 0);
 //!!        av_dict_set_int(&m_audio_opts, "format", AV_SAMPLE_FMT_S16, 0);
         av_dict_set_int(&m_audio_opts, "format", AV_SAMPLE_FMT_S32P, 0);
-        av_dict_set    (&m_audio_opts, "movflags", "faststart", 0);
+//        av_dict_set    (&m_audio_opts, "movflags", "faststart", 0);
+
         av_dict_set    (&m_audio_opts, "use_wallclock_as_timestamps", "1", 0);
+//        av_dict_set_int(&m_audio_opts, "async", 1000, 0);
+//        av_dict_set_int(&m_audio_opts, "aresample", 1000, 0);
         av_dict_set_int(&m_audio_opts, "channels", m_channels, 0);
         av_dict_set    (&m_audio_opts, "stream_name", "webcam C922", 0);
 
@@ -163,9 +166,10 @@ namespace ffmpegcpp
         const char * input_device = "dshow"; // Fixed by the operating system
 #elif defined(__linux__)
         // libavutil, pixdesc.h
-        const char * pix_fmt_name = av_get_pix_fmt_name(AV_PIX_FMT_YUVJ420P); // = "mjpeg"
         const char * input_device = "v4l2";
 #endif
+        const char * pix_fmt_name = av_get_pix_fmt_name(AV_PIX_FMT_YUVJ420P); // = "mjpeg"
+
         if (containerContext == nullptr)
             containerContext = avformat_alloc_context();
 
