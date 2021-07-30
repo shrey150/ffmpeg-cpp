@@ -5,10 +5,7 @@
 
 #include "VideoFrameSink.h"
 #include "VideoFilterInput.h"
-
-#ifdef __linux__
 #include <vector>
-#endif
 
 namespace ffmpegcpp
 {
