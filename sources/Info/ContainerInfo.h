@@ -4,9 +4,7 @@
 #include "VideoStreamInfo.h"
 #include "AudioStreamInfo.h"
 
-#ifdef __linux__
 #include <vector>
-#endif
 
 namespace ffmpegcpp
 {
