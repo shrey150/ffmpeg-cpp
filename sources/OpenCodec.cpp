@@ -1,11 +1,7 @@
-#ifndef __linux__
-#pragma once
-#endif
-
 #include "OpenCodec.h"
 #include "FFmpegException.h"
 
-using namespace std;
+//using namespace std;
 
 namespace ffmpegcpp
 {
@@ -13,7 +9,7 @@ namespace ffmpegcpp
 	{
 		if (!avcodec_is_open(context))
 		{
-			throw FFmpegException(std::string("Codec context for " + string(context->codec->name) + " hasn't been opened yet").c_str());
+			throw FFmpegException(std::string("Codec context for " + std::string(context->codec->name) + " hasn't been opened yet").c_str());
 		}
 
 		this->context = context;
