@@ -17,12 +17,7 @@ namespace ffmpegcpp
     //VAProfileH264Main ?
 
     // CTor
-    H264_VAAPICodec::H264_VAAPICodec()
-// no idea for Windows case, but certainly something exists already
-#ifdef __linux__
-	: VideoCodec("h264_vaapi")
-//	: VideoCodec("h264_v4l2m2m")
-#endif
+    H264_VAAPICodec::H264_VAAPICodec() : VideoCodec("h264_vaapi") //	: VideoCodec("h264_v4l2m2m")
     {
     }
 

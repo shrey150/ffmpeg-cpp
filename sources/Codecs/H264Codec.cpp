@@ -14,11 +14,7 @@ namespace ffmpegcpp
 {
 
     // CTor
-    H264Codec::H264Codec()
-// no idea for Windows case, but certainly something exists already
-#ifdef __linux__
-	: VideoCodec(AV_CODEC_ID_H264)
-#endif
+    H264Codec::H264Codec() : VideoCodec(AV_CODEC_ID_H264)
     {
     }
 
