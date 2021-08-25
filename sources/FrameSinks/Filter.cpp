@@ -7,11 +7,11 @@ using namespace std;
 namespace ffmpegcpp
 {
 
-	Filter::Filter(const char* p_filterString, FrameSink* p_target)
+	Filter::Filter(const std::string &  p_filterString, FrameSink* p_target)
 	{
 		this->targetMediaType = p_target->GetMediaType();
 		this->m_target = p_target->CreateStream();
-		this->m_filterString = p_filterString;
+		this->m_filterString = p_filterString.c_str();
 	}
 
 	AVMediaType Filter::GetMediaType()

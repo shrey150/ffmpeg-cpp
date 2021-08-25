@@ -6,6 +6,7 @@
 #include "VideoFrameSink.h"
 #include "VideoFilterInput.h"
 #include <vector>
+#include <string>
 
 namespace ffmpegcpp
 {
@@ -14,7 +15,7 @@ namespace ffmpegcpp
 
 	public:
 
-		Filter(const char* filterString, FrameSink* target);
+		Filter(const std::string & filterString, FrameSink* target);
 		virtual ~Filter();
 
 		FrameSinkStream* CreateStream();
