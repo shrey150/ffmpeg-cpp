@@ -8,17 +8,19 @@
 #include "Sources/InputSource.h"
 #include "Info/ContainerInfo.h"
 
+#include <string>
+
 namespace ffmpegcpp
 {
     class Demuxer : public InputSource
     {
     public:
 
-        Demuxer(const char* fileName);
-        Demuxer(const char* fileName, int width, int height, int framerate);
-        Demuxer(const char* fileName, AVInputFormat* inputFormat, AVDictionary *inputFormatOptions);
-        Demuxer(const char* fileName, const char* inputFormat, int sampleRate, int channels, AudioFrameSink * p_audio_frameSink);
-        Demuxer(const char* fileName, AVInputFormat* inputFormat, AVDictionary *inputFormatOptions, AVFormatContext * aContainerContext);
+        Demuxer(const std::string & fileName);
+        Demuxer(const std::string & fileName, int width, int height, int framerate);
+        Demuxer(const std::string & fileName, AVInputFormat* inputFormat, AVDictionary *inputFormatOptions);
+        Demuxer(const std::string & fileName, const std::string & inputFormat, int sampleRate, int channels, AudioFrameSink * p_audio_frameSink);
+        Demuxer(const std::string & fileName, AVInputFormat* inputFormat, AVDictionary *inputFormatOptions, AVFormatContext * aContainerContext);
         ~Demuxer();
 
         void DecodeBestAudioStream(FrameSink* frameSink);

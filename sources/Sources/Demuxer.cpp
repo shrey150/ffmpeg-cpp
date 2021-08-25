@@ -8,18 +8,18 @@ using namespace std;
 
 namespace ffmpegcpp
 {
-    Demuxer::Demuxer(const char* fileName)
+    Demuxer::Demuxer(const std::string & fileName)
         : Demuxer(fileName, NULL, NULL)
     {
     }
 
-    Demuxer::Demuxer(const char* p_fileName, AVInputFormat* p_inputFormat, AVDictionary *p_format_opts)
+    Demuxer::Demuxer(const std::string & p_fileName, AVInputFormat* p_inputFormat, AVDictionary *p_format_opts)
     {
-        this->m_fileName    = p_fileName;
+        this->m_fileName    = p_fileName.c_str();
 
         int ret = 0;// open input file, and allocate format context
 
-        if ((ret = avformat_open_input(&containerContext, p_fileName, p_inputFormat, &p_format_opts)) < 0)
+        if ((ret = avformat_open_input(&containerContext, p_fileName.c_str(), p_inputFormat, &p_format_opts)) < 0)
         {
             CleanUp();
             throw FFmpegException(std::string("Failed to open input container " + string(p_fileName)).c_str(), ret);
@@ -53,16 +53,16 @@ namespace ffmpegcpp
         pkt->size = 0;
     }
 
-    Demuxer::Demuxer(const char* p_fileName, int d_width, int d_height, int d_framerate)
+    Demuxer::Demuxer(const std::string & p_fileName, int d_width, int d_height, int d_framerate)
     {
-        m_fileName = p_fileName;
+        m_fileName = p_fileName.c_str();
         m_width  = d_width;
         m_height = d_height;
         m_framerate = d_framerate;
         setVideoStreamDevice();
     }
 
-    Demuxer::Demuxer(const char* deviceName, const char* inputFormat, int sampleRate, int channels, AudioFrameSink * p_frameSink)
+    Demuxer::Demuxer(const std::string & deviceName, const std::string & inputFormat, int sampleRate, int channels, AudioFrameSink * p_frameSink)
     {
         // LINUX : fileName = hw::1,0; input format = alsa; sampleRate = 48000 (default); channels= 2 (default); frameSink = audioDecoder
         // WINDOWS : fileName = ?? ; input format = alsa; sampleRate = 48000 (default); channels= 2 (default); frameSink = audioDecoder
@@ -92,7 +92,7 @@ namespace ffmpegcpp
         Available formats:
         - S16_LE
 */
-        m_audio_device = deviceName;
+        m_audio_device = deviceName.c_str();
         m_sampleRate = sampleRate;
         m_channels = channels;
         m_audio_frameSink = p_frameSink;
@@ -102,7 +102,7 @@ namespace ffmpegcpp
 
         //containerContext->audio_codec_id = AV_CODEC_ID_AAC;
 
-        if (!(m_file_iformat = av_find_input_format(inputFormat)))
+        if (!(m_file_iformat = av_find_input_format(inputFormat.c_str())))
         {
             CleanUp();
             throw FFmpegException(std::string("Unknown input format: " + string(inputFormat)).c_str());
