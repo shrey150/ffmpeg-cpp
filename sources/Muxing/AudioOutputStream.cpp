@@ -74,19 +74,14 @@ namespace ffmpegcpp
 
 	void AudioOutputStream::PreparePacketForMuxer(AVPacket* pkt)
 	{
-		/* rescale output packet timestamp values from codec to stream timebase */
-		AVRational* time_base = &codecTimeBase;
-		av_packet_rescale_ts(pkt, *time_base, stream->time_base);
-		pkt->stream_index = stream->index;
+            /* rescale output packet timestamp values from codec to stream timebase */
+            AVRational* time_base = &codecTimeBase;
+            av_packet_rescale_ts(pkt, *time_base, stream->time_base);
+            pkt->stream_index = stream->index;
 
-		// We NEED to fill in the duration here, otherwise the frame rate is calculated wrong in the end for certain codecs/containers (ie h264/mp4).
-		if (stream->time_base.num != 0 && stream->avg_frame_rate.num != 0)
-		{
-			pkt->duration = stream->time_base.den / stream->time_base.num / stream->avg_frame_rate.num * stream->avg_frame_rate.den;
-                std::cerr << "stream->avg_frame_rate.num =  " <<  stream->avg_frame_rate.num << "\n";
-                std::cerr << "pkt->duration  " <<  pkt->duration << "\n";
-
-		}
+            // We NEED to fill in the duration here, otherwise the frame rate is calculated wrong in the end for certain codecs/containers (ie h264/mp4).
+            if (stream->time_base.num != 0 && stream->avg_frame_rate.num != 0)
+                    pkt->duration = stream->time_base.den / stream->time_base.num / stream->avg_frame_rate.num * stream->avg_frame_rate.den;
 	}
 
 	bool AudioOutputStream::IsPrimed()
