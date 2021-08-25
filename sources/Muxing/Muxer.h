@@ -12,7 +12,7 @@ namespace ffmpegcpp {
 	{
 	public:
 
-		Muxer(const char* fileName);
+		Muxer(const std::string & fileName);
 		~Muxer();
 
 		void AddOutputStream(OutputStream* stream);
