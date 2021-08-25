@@ -12,9 +12,9 @@ namespace ffmpegcpp
 	{
 	public:
 
-		RawVideoFileSource(const char* fileName, FrameSink* a_frameSink);
+		RawVideoFileSource(const std::string & fileName, FrameSink* a_frameSink);
 
-                RawVideoFileSource(const char*, int, int, int);
+                RawVideoFileSource(const std::string &, int, int, int);
 		// I couldn't get this to work. The thing is that it also crashes weirdly when I run ffmpeg directly,
 		// so I think it's more an issue of ffmpeg than one of my library.
 		//RawVideoFileSource(const char* fileName, int width, int height, const char* frameRate, AVPixelFormat format, VideoFrameSink* frameSink);

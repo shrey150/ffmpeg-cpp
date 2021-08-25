@@ -3,17 +3,19 @@
 #include "FFmpegException.h"
 #include <iostream>
 
+#include <string>
+
 using namespace std;
 
 namespace ffmpegcpp
 {
-    RawVideoFileSource::RawVideoFileSource(const char* fileName, FrameSink* p_frameSink)
+    RawVideoFileSource::RawVideoFileSource(const std::string & fileName, FrameSink* p_frameSink)
     {
         setFrameSink(p_frameSink);
         // create the demuxer - it can handle figuring out the video type on its own apparently
         try
         {
-            demuxer = new Demuxer(fileName, NULL, NULL);
+            demuxer = new Demuxer(fileName.c_str(), NULL, NULL);
             demuxer->DecodeBestVideoStream(m_frameSink);
 
         }
@@ -26,14 +28,14 @@ namespace ffmpegcpp
     // only testng on Linux for the moment, but Windows should work. MacOS X = don't care
 #ifdef __linux__
 
-    RawVideoFileSource::RawVideoFileSource(const char* fileName, int d_width, int d_height, int d_framerate)
+    RawVideoFileSource::RawVideoFileSource(const std::string & fileName, int d_width, int d_height, int d_framerate)
     {
         // mandatory under Linux
         avdevice_register_all();
 
         try
         {
-            demuxer = new Demuxer(fileName, d_width, d_height, d_framerate);
+            demuxer = new Demuxer(fileName.c_str(), d_width, d_height, d_framerate);
         }
 
         catch (FFmpegException e)
