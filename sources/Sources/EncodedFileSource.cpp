@@ -6,11 +6,11 @@ using namespace std;
 
 namespace ffmpegcpp
 {
-	EncodedFileSource::EncodedFileSource(const char* inFileName, const char* codecName, FrameSink* output)
+	EncodedFileSource::EncodedFileSource(const std::string & inFileName, const std::string & codecName, FrameSink* output)
 	{
 		try
 		{
-			AVCodec* codec = CodecDeducer::DeduceDecoder(codecName);
+			AVCodec* codec = CodecDeducer::DeduceDecoder(codecName.c_str());
 			Init(inFileName, codec, output);
 		}
 		catch (FFmpegException e)
@@ -20,7 +20,7 @@ namespace ffmpegcpp
 		}
 	}
 
-	EncodedFileSource::EncodedFileSource(const char* inFileName, AVCodecID codecId, FrameSink* output)
+	EncodedFileSource::EncodedFileSource(const std::string & inFileName, AVCodecID codecId, FrameSink* output)
 	{
 		try
 		{
@@ -75,7 +75,7 @@ namespace ffmpegcpp
 		fclose(file);
 	}
 
-	void EncodedFileSource::Init(const char* inFileName, AVCodec* codec, FrameSink* output)
+	void EncodedFileSource::Init(const std::string & inFileName, AVCodec* codec, FrameSink* output)
 	{
 		this->output = output->CreateStream();
 		this->codec = codec;
@@ -98,7 +98,7 @@ namespace ffmpegcpp
 			throw FFmpegException(std::string("Failed to open context for codec " + string(codec->name)).c_str(), ret);
 		}
 
-		file = fopen(inFileName, "rb");
+		file = fopen(inFileName.c_str(), "rb");
 		if (!file)
 		{
 			throw FFmpegException(std::string("Could not open file " + string(inFileName)).c_str());
