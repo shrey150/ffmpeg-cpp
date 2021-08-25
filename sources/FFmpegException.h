@@ -2,15 +2,16 @@
 
 #include "ffmpeg.h"
 #include <stdexcept>
+#include <string>
 
 namespace ffmpegcpp
 {
 	class FFmpegException : public std::exception
 	{
 	    public:
-		explicit FFmpegException(const char * error);
+		explicit FFmpegException(const std::string & error);
 
-		explicit FFmpegException(const char * error, int returnValue);
+		explicit FFmpegException(const std::string & error, int returnValue);
 
 		virtual const char* what() const noexcept
 		{
