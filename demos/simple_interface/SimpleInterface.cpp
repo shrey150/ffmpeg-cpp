@@ -6,11 +6,11 @@
 #include <string>
 #include <iostream>
 #include <stdio.h>
-#ifndef __linux__
+#if defined(__linux__) || defined(__APPLE__)
+#include <experimental/filesystem>
+#else
 #include <io.h>
 #include <filesystem>
-#else
-#include <experimental/filesystem>
 #endif
 #include <fstream>
 #include <sstream>
@@ -20,7 +20,6 @@
 
 using namespace std;
 using namespace ffmpegcpp;
-
 
 template<class CodecType, class FrameSinkType>
 struct StreamContext

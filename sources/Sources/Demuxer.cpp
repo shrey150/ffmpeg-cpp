@@ -164,7 +164,7 @@ namespace ffmpegcpp
         int ret = 0;
 #ifdef _WIN32
         const char * input_device = "dshow"; // Fixed by the operating system
-#elif defined(__linux__)
+#elif defined(__linux__) || defined(__APPLE__)
         // libavutil, pixdesc.h
         const char * input_device = "v4l2";
 #endif

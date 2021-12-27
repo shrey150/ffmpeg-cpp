@@ -12,5 +12,5 @@ g++ -I..  -Wall -std=c++11  \
           -I../../sources \
           -o remuxing remuxing.cpp \
           -L../../build/ -lffmpeg-cpp \
-          `pkg-config --cflags --libs libavutil libavcodec libswscale libavformat libswresample` -lrt
+          `pkg-config --cflags --libs libavutil libavcodec libswscale libavformat libswresample`
 

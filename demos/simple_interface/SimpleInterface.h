@@ -1,7 +1,7 @@
 // MathLibrary.h - Contains declarations of math functions
 #pragma once
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__APPLE__)
 #define DllExport
 #else
 #define DllExport __declspec(dllexport)

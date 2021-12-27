@@ -1,7 +1,7 @@
-This part is Linux only
-
+# Linux/macOS ignores
 .compile_me.sh
-
+build/
+.DS_Store
 
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
