@@ -1,8 +1,6 @@
 #include "VideoCodec.h"
 #include "FFmpegException.h"
-#ifdef __linux__
 #include <limits>
-#endif
 #include <iostream>
 
 /*
